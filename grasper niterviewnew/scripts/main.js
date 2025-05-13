@@ -96,16 +96,16 @@ orderForm.addEventListener('submit', (e) => {
     
     const result = calculateChickenOrder(legs, wings, flesh);
     
-    // Update display
-    minChickensSpan.textContent = result.minChickens;
-    orderWeightSpan.textContent = result.orderWeight;
-    remainingWeightSpan.textContent = result.remainingWeight;
-    remainingPartsSpan.textContent = `${result.legsLeft} legs, ${result.wingsLeft} wings, ${result.fleshLeft} flesh`;
-    
     // Update inventory
     inventory.legs -= legs;
     inventory.wings -= wings;
     inventory.flesh -= flesh;
+
+    // Update display
+    minChickensSpan.textContent = result.minChickens;
+    orderWeightSpan.textContent = result.orderWeight;
+    remainingWeightSpan.textContent = (inventory.legs * 250 + inventory.wings * 250 + inventory.flesh * 1000);
+    remainingPartsSpan.textContent = `${inventory.legs} legs, ${inventory.wings} wings, ${inventory.flesh} flesh`;
     
     // Add to order history
     const order = {
